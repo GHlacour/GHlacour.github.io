@@ -59,26 +59,47 @@ function generateAvatarUrl(gender, ethnicity) {
     url.searchParams.append("mouth", randomMouth);
     url.searchParams.append("brows", randomBrow);
 
+    console.log("Generated Avatar URL:", url.toString()); // Log the URL for debugging
     return url.toString();
 }
-
-// Update the avatar image when gender or ethnicity changes
-document.getElementById("gender-select").addEventListener("change", updateAvatar);
-document.getElementById("ethnicity-select").addEventListener("change", updateAvatar);
 
 // Function to update the avatar image
 function updateAvatar() {
     const gender = document.getElementById("gender-select").value;
     const ethnicity = document.getElementById("ethnicity-select").value;
     const avatarUrl = generateAvatarUrl(gender, ethnicity);
-    document.getElementById("avatar-image").src = avatarUrl;
+
+    const avatarImage = document.getElementById("avatar-image");
+    if (avatarImage) {
+        avatarImage.src = avatarUrl;
+        console.log("Avatar updated to:", avatarUrl); // Log the update
+    } else {
+        console.error("Avatar image element not found!");
+    }
 }
 
-// Initialize the avatar on page load
-window.addEventListener("DOMContentLoaded", updateAvatar);
+// Add event listeners for gender and ethnicity dropdowns
+function setupEventListeners() {
+    const genderSelect = document.getElementById("gender-select");
+    const ethnicitySelect = document.getElementById("ethnicity-select");
+
+    if (genderSelect && ethnicitySelect) {
+        genderSelect.addEventListener("change", updateAvatar);
+        ethnicitySelect.addEventListener("change", updateAvatar);
+        console.log("Event listeners added for gender and ethnicity dropdowns.");
+    } else {
+        console.error("Gender or ethnicity dropdown not found!");
+    }
+}
+
+// Initialize the avatar and event listeners when the DOM is loaded
+window.addEventListener("DOMContentLoaded", function() {
+    updateAvatar();
+    setupEventListeners();
+});
 
 // Confirm avatar and start the game
-document.getElementById("confirm-avatar").addEventListener("click", function() {
+document.getElementById("confirm-avatar")?.addEventListener("click", function() {
     const gender = document.getElementById("gender-select").value;
     const ethnicity = document.getElementById("ethnicity-select").value;
     const field = document.getElementById("field-select").value;
@@ -99,17 +120,21 @@ document.getElementById("confirm-avatar").addEventListener("click", function() {
 // Function to load the orientation phase
 function loadOrientationPhase() {
     const gameContainer = document.getElementById("game-container");
-    gameContainer.innerHTML = `
-        <h1>Year 1: Orientation</h1>
-        <p>Welcome to your PhD journey in ${player.fieldOfStudy}!</p>
-        <img src="${player.avatarUrl}" alt="Your Avatar" width="100" height="100">
-        <p>Your first task is to complete a literature review.</p>
-        <button id="start-literature-review">Start Literature Review</button>
-        <div id="phase-output"></div>
-    `;
+    if (gameContainer) {
+        gameContainer.innerHTML = `
+            <h1>Year 1: Orientation</h1>
+            <p>Welcome to your PhD journey in ${player.fieldOfStudy}!</p>
+            <img src="${player.avatarUrl}" alt="Your Avatar" width="100" height="100">
+            <p>Your first task is to complete a literature review.</p>
+            <button id="start-literature-review">Start Literature Review</button>
+            <div id="phase-output"></div>
+        `;
 
-    // Load the orientation phase script
-    const script = document.createElement("script");
-    script.src = "scripts/phases/orientation.js";
-    document.body.appendChild(script);
+        // Load the orientation phase script
+        const script = document.createElement("script");
+        script.src = "scripts/phases/orientation.js";
+        document.body.appendChild(script);
+    } else {
+        console.error("Game container not found!");
+    }
 }

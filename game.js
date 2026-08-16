@@ -1,9 +1,66 @@
+// Map gender to avatar attributes
+const genderAttributes = {
+    male: {
+        hair: ["short1", "short2", "short3", "short4", "short5"],
+        facialHair: ["beardMedium", "beardLight", "beardMajestic", "mustacheFancy", "mustacheMagnum"],
+        clothing: ["shirtCrewNeck", "shirtScoopNeck", "shirtVNeck"],
+    },
+    female: {
+        hair: ["long1", "long2", "long3", "long4", "long5", "short1", "short2"],
+        facialHair: ["none"],
+        clothing: ["shirtCrewNeck", "shirtScoopNeck", "shirtVNeck", "dress"],
+    },
+    "non-binary": {
+        hair: ["short1", "short2", "long1", "long2"],
+        facialHair: ["none", "beardLight"],
+        clothing: ["shirtCrewNeck", "shirtScoopNeck", "hoodie"],
+    },
+    other: {
+        hair: ["short1", "short2", "long1", "long2", "long3"],
+        facialHair: ["none", "beardLight"],
+        clothing: ["shirtCrewNeck", "shirtScoopNeck", "hoodie"],
+    },
+};
+
+// Map ethnicity to skin tone
+const ethnicityToSkinTone = {
+    light: ["light", "pale"],
+    medium: ["mediumLight", "medium"],
+    dark: ["mediumDark", "dark", "darkest"],
+};
+
 // Function to generate the DiceBear avatar URL
 function generateAvatarUrl(gender, ethnicity) {
-    // Use the 'avataaars' style for customizable avatars
-    // The seed combines gender and ethnicity to create a unique avatar
-    const seed = `${gender}-${ethnicity}-${Math.random().toString(36).substring(2, 8)}`;
-    return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
+    // Select random attributes based on gender
+    const genderAttrs = genderAttributes[gender];
+    const hair = genderAttrs.hair[Math.floor(Math.random() * genderAttrs.hair.length)];
+    const facialHair = genderAttrs.facialHair[Math.floor(Math.random() * genderAttrs.facialHair.length)];
+    const clothing = genderAttrs.clothing[Math.floor(Math.random() * genderAttrs.clothing.length)];
+
+    // Select random skin tone based on ethnicity
+    const skinTones = ethnicityToSkinTone[ethnicity];
+    const skinTone = skinTones[Math.floor(Math.random() * skinTones.length)];
+
+    // Randomly select other features
+    const eyes = ["normal", "happy", "content", "squint", "surprised"];
+    const mouth = ["smile", "frown", "serious", "tongue", "twinkle"];
+    const brows = ["normal", "angry", "happy", "sad", "surprised"];
+
+    const randomEye = eyes[Math.floor(Math.random() * eyes.length)];
+    const randomMouth = mouth[Math.floor(Math.random() * mouth.length)];
+    const randomBrow = brows[Math.floor(Math.random() * brows.length)];
+
+    // Construct the URL with selected options
+    const url = new URL("https://api.dicebear.com/7.x/avataaars/svg");
+    url.searchParams.append("hair", hair);
+    url.searchParams.append("facialHair", facialHair);
+    url.searchParams.append("clothing", clothing);
+    url.searchParams.append("skinTone", skinTone);
+    url.searchParams.append("eyes", randomEye);
+    url.searchParams.append("mouth", randomMouth);
+    url.searchParams.append("brows", randomBrow);
+
+    return url.toString();
 }
 
 // Update the avatar image when gender or ethnicity changes

@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhD Simulation Game</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="game-container">
+// Load the character creation phase
+function loadCharacterCreation() {
+    const gameContainer = document.getElementById("game-container");
+    gameContainer.innerHTML = `
         <h1>PhD Simulation Game</h1>
-
-        <!-- Character Creation Section -->
         <div id="character-creation">
             <h2>Create Your Avatar</h2>
-
-            <!-- Avatar Preview -->
             <div id="avatar-preview">
                 <img id="avatar-image" src="" alt="Your Avatar" width="150" height="150">
             </div>
-
             <div>
                 <label>Gender Presentation:</label>
                 <select id="gender-select">
@@ -28,7 +17,6 @@
                     <option value="other">Other</option>
                 </select>
             </div>
-
             <div>
                 <label>Ethnicity:</label>
                 <select id="ethnicity-select">
@@ -37,7 +25,6 @@
                     <option value="dark">Dark</option>
                 </select>
             </div>
-
             <div>
                 <label>Field of Study:</label>
                 <select id="field-select">
@@ -47,16 +34,17 @@
                     <option value="chemistry">Chemistry</option>
                 </select>
             </div>
-
             <button id="confirm-avatar">Confirm Avatar</button>
         </div>
+    `;
 
-        <!-- Game Phases Section (Hidden Initially) -->
-        <div id="game-phases" style="display: none;">
-            <div id="game-output"></div>
-            <button id="start-phase-1" style="display: none;">Start Year 1: Orientation</button>
-        </div>
-    </div>
-    <script src="game.js"></script>
-</body>
-</html>
+    // Load the character creation script
+    const script = document.createElement("script");
+    script.src = "scripts/phases/character-creation.js";
+    document.body.appendChild(script);
+}
+
+// Initialize the game
+window.onload = function() {
+    loadCharacterCreation();
+};

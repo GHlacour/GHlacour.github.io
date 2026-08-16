@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhD Simulation Game</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Dynamic content will be loaded here -->
+    </div>
+
+    <!-- Traits display at the bottom of the screen -->
+    <div id="traits-display">
+        <div class="trait">
+            <span>Writing: </span>
+            <div class="trait-bar-container">
+                <div class="trait-bar" id="writing-bar" data-value="2"></div>
+            </div>
+            <span class="trait-value">2/10</span>
+        </div>
+        <div class="trait">
+            <span>Coding: </span>
+            <div class="trait-bar-container">
+                <div class="trait-bar" id="coding-bar" data-value="2"></div>
+            </div>
+            <span class="trait-value">2/10</span>
+        </div>
+        <div class="trait">
+            <span>Teaching: </span>
+            <div class="trait-bar-container">
+                <div class="trait-bar" id="teaching-bar" data-value="1"></div>
+            </div>
+            <span class="trait-value">1/10</span>
+        </div>
+    </div>
+
+    <script src="scripts/player.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>

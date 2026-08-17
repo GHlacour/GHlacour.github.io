@@ -3,41 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhD Simulation Game</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <title>PhD Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
-        <!-- Dynamic content will be loaded here -->
-    </div>
+    <div class="game-container">
+        <div class="character-section">
+            <h2>Your Character</h2>
+            <p id="character-name">Name: </p>
+            <p id="character-gender">Gender: </p>
+            <p id="character-ethnicity">Ethnicity: </p>
+            <img id="character-image" src="" alt="Character Situation" width="200">
+            <button id="generate-character">Generate Random Character</button>
+        </div>
 
-    <!-- Traits display at the bottom of the screen -->
-    <div id="traits-display">
-        <div class="trait">
-            <span>Writing: </span>
-            <div class="trait-bar-container">
-                <div class="trait-bar" id="writing-bar" data-value="2"></div>
-            </div>
-            <span class="trait-value">2/10</span>
+        <div class="event-section">
+            <h2>Event</h2>
+            <p id="event-story"></p>
+            <img id="event-image" src="" alt="Event Illustration" width="200">
+            <div id="event-choices"></div>
         </div>
-        <div class="trait">
-            <span>Coding: </span>
-            <div class="trait-bar-container">
-                <div class="trait-bar" id="coding-bar" data-value="2"></div>
+
+        <div class="progress-section">
+            <h2>Progress</h2>
+            <div class="progress-bar">
+                <label>Research Progress: <span id="research-progress">0%</span></label>
+                <progress id="research-bar" value="0" max="100"></progress>
             </div>
-            <span class="trait-value">2/10</span>
-        </div>
-        <div class="trait">
-            <span>Teaching: </span>
-            <div class="trait-bar-container">
-                <div class="trait-bar" id="teaching-bar" data-value="1"></div>
+            <div class="trait-bar">
+                <label>Writing Skill: <span id="writing-skill">5</span></label>
+                <progress id="writing-bar" value="5" max="10"></progress>
             </div>
-            <span class="trait-value">1/10</span>
+            <div class="trait-bar">
+                <label>Stress Level: <span id="stress-level">2</span></label>
+                <progress id="stress-bar" value="2" max="10"></progress>
+            </div>
+            <div class="trait-bar">
+                <label>Publications: <span id="publications">0</span></label>
+                <progress id="publications-bar" value="0" max="4"></progress>
+            </div>
         </div>
     </div>
-
-    <script src="scripts/player.js"></script>
-    <script src="scripts/utils.js"></script>
-    <script src="scripts/main.js"></script>
+    <script type="module" src="game.js"></script>
 </body>
 </html>

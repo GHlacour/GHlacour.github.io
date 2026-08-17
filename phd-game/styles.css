@@ -15,8 +15,13 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.screen {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .character-section, .event-section, .progress-section {
-    margin-bottom: 20px;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -27,18 +32,14 @@ body {
     text-align: center;
 }
 
-.character-section img {
+.illustration {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
     margin: 10px 0;
-}
-
-.event-section img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin: 10px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .event-section p {
@@ -53,7 +54,7 @@ body {
     margin-top: 15px;
 }
 
-#event-choices button {
+#event-choices button, button {
     padding: 10px;
     background: #007BFF;
     color: white;
@@ -63,7 +64,7 @@ body {
     font-size: 16px;
 }
 
-#event-choices button:hover {
+#event-choices button:hover, button:hover {
     background: #0056b3;
 }
 
@@ -71,14 +72,29 @@ body {
     margin-top: 20px;
 }
 
-.progress-bar, .trait-bar {
-    margin-bottom: 10px;
+.progress-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.progress-bar label {
+    width: 150px;
+    text-align: right;
+    flex-shrink: 0;
 }
 
 progress {
     width: 100%;
     height: 20px;
     border-radius: 5px;
+    flex-grow: 1;
 }
 
 progress::-webkit-progress-bar {
@@ -89,21 +105,6 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
     background-color: #007BFF;
     border-radius: 5px;
-}
-
-button {
-    padding: 10px 15px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-button:hover {
-    background: #0056b3;
 }
 
 @media (max-width: 600px) {

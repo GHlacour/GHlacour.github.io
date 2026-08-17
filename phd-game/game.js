@@ -1,3 +1,9 @@
+// Character data
+const names = ["Alex", "Jamie", "Taylor", "Morgan", "Casey"];
+const genders = ["Male", "Female", "Non-binary", "Other"];
+const ethnicities = ["Caucasian", "Asian", "African", "Hispanic", "Middle Eastern"];
+const characterImages = ["images/situation1.jpg", "images/situation2.png"];
+
 // Game state
 let gameState = {
     character: {},
@@ -11,11 +17,14 @@ let gameState = {
 };
 
 // DOM elements
+const characterScreen = document.getElementById("character-screen");
+const eventScreen = document.getElementById("event-screen");
 const characterName = document.getElementById("character-name");
 const characterGender = document.getElementById("character-gender");
 const characterEthnicity = document.getElementById("character-ethnicity");
 const characterImage = document.getElementById("character-image");
 const generateCharacterBtn = document.getElementById("generate-character");
+const acceptCharacterBtn = document.getElementById("accept-character");
 const eventStory = document.getElementById("event-story");
 const eventImage = document.getElementById("event-image");
 const eventChoices = document.getElementById("event-choices");
@@ -23,6 +32,10 @@ const researchProgress = document.getElementById("research-progress");
 const researchBar = document.getElementById("research-bar");
 const writingSkill = document.getElementById("writing-skill");
 const writingBar = document.getElementById("writing-bar");
+const stressLevel = document.getElementById("stress-level");
+const stressBar = document.getElementById("stress-bar");
+const publications = document.getElementById("publications");
+const publicationsBar = document.getElementById("publications-bar");
 
 // Generate random character
 generateCharacterBtn.addEventListener("click", () => {
@@ -37,22 +50,24 @@ generateCharacterBtn.addEventListener("click", () => {
     characterGender.textContent = `Gender: ${gameState.character.gender}`;
     characterEthnicity.textContent = `Ethnicity: ${gameState.character.ethnicity}`;
     characterImage.src = gameState.character.image;
+    acceptCharacterBtn.disabled = false;
+});
 
-    // Start the game with the first event
+// Accept character and start the game
+acceptCharacterBtn.addEventListener("click", () => {
+    characterScreen.style.display = "none";
+    eventScreen.style.display = "block";
     triggerEvent();
 });
 
 // Dynamically load an event based on publication count
 async function loadEvent(publicationCount) {
-    // Example: Load event A1 if publicationCount is 0, A2 if 1, etc.
-    // The letter (A, B, etc.) can be randomized or follow a pattern.
     const letters = ["A", "B", "C", "D"];
     const randomLetter = letters[Math.floor(Math.random() * letters.length)];
     const eventNumber = publicationCount + 1;
     const eventFile = `events/${randomLetter}${eventNumber}.js`;
 
     try {
-        // Dynamically import the event file
         const eventModule = await import(`./${eventFile}`);
         return eventModule[`event${randomLetter}${eventNumber}`];
     } catch (error) {
@@ -94,6 +109,10 @@ function updateProgress() {
     researchBar.value = gameState.researchProgress;
     writingSkill.textContent = gameState.traits.writingSkill;
     writingBar.value = gameState.traits.writingSkill;
+    stressLevel.textContent = gameState.traits.stressLevel;
+    stressBar.value = gameState.traits.stressLevel;
+    publications.textContent = gameState.publications;
+    publicationsBar.value = gameState.publications;
 
     // Check for game end conditions
     if (gameState.publications >= 4 && !gameState.thesisWritten) {
@@ -101,6 +120,5 @@ function updateProgress() {
         gameState.thesisWritten = true;
     } else if (gameState.thesisWritten && gameState.researchProgress >= 100) {
         alert("Congratulations! You graduated and received a job offer.");
-        // End game
     }
 }

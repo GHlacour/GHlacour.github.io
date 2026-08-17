@@ -8,39 +8,48 @@
 </head>
 <body>
     <div class="game-container">
-        <div class="character-section">
-            <h2>Your Character</h2>
-            <p id="character-name">Name: </p>
-            <p id="character-gender">Gender: </p>
-            <p id="character-ethnicity">Ethnicity: </p>
-            <img id="character-image" src="" alt="Character Situation" width="200">
-            <button id="generate-character">Generate Random Character</button>
+        <!-- Character Generation Screen -->
+        <div id="character-screen" class="screen">
+            <div class="character-section">
+                <h2>Your Character</h2>
+                <p id="character-name">Name: </p>
+                <p id="character-gender">Gender: </p>
+                <p id="character-ethnicity">Ethnicity: </p>
+                <img id="character-image" src="" alt="Character Situation" class="illustration">
+                <button id="generate-character">Generate Random Character</button>
+                <button id="accept-character" disabled>Accept Character</button>
+            </div>
         </div>
 
-        <div class="event-section">
-            <h2>Event</h2>
-            <p id="event-story"></p>
-            <img id="event-image" src="" alt="Event Illustration" width="200">
-            <div id="event-choices"></div>
-        </div>
+        <!-- Event Screen -->
+        <div id="event-screen" class="screen" style="display: none;">
+            <div class="event-section">
+                <h2>Event</h2>
+                <p id="event-story"></p>
+                <img id="event-image" src="" alt="Event Illustration" class="illustration">
+                <div id="event-choices"></div>
+            </div>
 
-        <div class="progress-section">
-            <h2>Progress</h2>
-            <div class="progress-bar">
-                <label>Research Progress: <span id="research-progress">0%</span></label>
-                <progress id="research-bar" value="0" max="100"></progress>
-            </div>
-            <div class="trait-bar">
-                <label>Writing Skill: <span id="writing-skill">5</span></label>
-                <progress id="writing-bar" value="5" max="10"></progress>
-            </div>
-            <div class="trait-bar">
-                <label>Stress Level: <span id="stress-level">2</span></label>
-                <progress id="stress-bar" value="2" max="10"></progress>
-            </div>
-            <div class="trait-bar">
-                <label>Publications: <span id="publications">0</span></label>
-                <progress id="publications-bar" value="0" max="4"></progress>
+            <div class="progress-section">
+                <h2>Progress</h2>
+                <div class="progress-bars">
+                    <div class="progress-bar">
+                        <label>Research Progress: <span id="research-progress">0%</span></label>
+                        <progress id="research-bar" value="0" max="100"></progress>
+                    </div>
+                    <div class="progress-bar">
+                        <label>Writing Skill: <span id="writing-skill">5</span></label>
+                        <progress id="writing-bar" value="5" max="10"></progress>
+                    </div>
+                    <div class="progress-bar">
+                        <label>Stress Level: <span id="stress-level">2</span></label>
+                        <progress id="stress-bar" value="2" max="10"></progress>
+                    </div>
+                    <div class="progress-bar">
+                        <label>Publications: <span id="publications">0</span></label>
+                        <progress id="publications-bar" value="0" max="4"></progress>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

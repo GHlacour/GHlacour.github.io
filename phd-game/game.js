@@ -2,7 +2,7 @@
 const names = ["Alex", "Jamie", "Taylor", "Morgan", "Casey"];
 const genders = ["Male", "Female", "Non-binary", "Other"];
 const ethnicities = ["Caucasian", "Asian", "African", "Hispanic", "Middle Eastern"];
-const characterImages = ["images/situation1.jpg", "images/situation2.png"];
+const characterImages = ["images/situation1.jpg", "images/situation2.jpg"];
 
 // Game state
 let gameState = {
